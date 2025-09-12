@@ -90,7 +90,14 @@ public class HoeManager {
         if (currentLevel.fortuneBonus() > 0) {
             int bonusAmount = random.nextInt(currentLevel.fortuneBonus() + 1);
             if (bonusAmount > 0) {
-                Material dropType = CROP_TO_DROP_MAP.get(block.getType());
+                Material dropType;
+                if (block.getType() == Material.WHEAT) {
+                    // Special case for wheat to only drop extra WHEAT, not seeds.
+                    dropType = Material.WHEAT;
+                } else {
+                    dropType = CROP_TO_DROP_MAP.get(block.getType());
+                }
+
                 if (dropType != null) {
                     block.getWorld().dropItemNaturally(block.getLocation(), new ItemStack(dropType, bonusAmount));
                 }

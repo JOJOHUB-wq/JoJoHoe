@@ -4,6 +4,7 @@ main: ru.jojo.jojohoe.JoJoHoe
 api-version: '1.21'
 author: Jules
 description: A special hoe with leveling mechanics.
+softdepend: [WorldGuard]
 commands:
   hoe:
     description: Main command for JoJoHoe plugin.

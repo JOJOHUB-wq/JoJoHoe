@@ -83,16 +83,18 @@ levels:
     enchants:
       - "EFFICIENCY:4"
       - "UNBREAKING:2"
+      - "FORTUNE:1"
     lore:
       - "&bЛучший друг фермера."
   - id: "netherite"
     name: "Незеритовый"
     material: "NETHERITE_HOE"
     required_crops: 5000
-    fortune_bonus: 10
+    fortune_bonus: 200
     enchants:
       - "EFFICIENCY:5"
       - "UNBREAKING:3"
+      - "FORTUNE:3"
       - "MENDING:1"
     lore:
       - "&5Высшая форма мотыги."

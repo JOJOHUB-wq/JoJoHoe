@@ -1,3 +1,4 @@
+/app/jojohoe/src/main/java/ru/jojo/jojohoe/manager/WorldGuardManager.java
 /app/jojohoe/src/main/java/ru/jojo/jojohoe/listener/BlockBreakListener.java
 /app/jojohoe/src/main/java/ru/jojo/jojohoe/command/HoeTabCompleter.java
 /app/jojohoe/src/main/java/ru/jojo/jojohoe/model/HoeLevel.java

@@ -2,6 +2,7 @@ package ru.jojo.jojohoe.listener;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
@@ -11,16 +12,20 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import ru.jojo.jojohoe.JoJoHoe;
 import ru.jojo.jojohoe.manager.ConfigManager;
 import ru.jojo.jojohoe.manager.HoeManager;
+import ru.jojo.jojohoe.manager.WorldGuardManager;
 import ru.jojo.jojohoe.model.HoeLevel;
 
 public class BlockBreakListener implements Listener {
 
+    private final JoJoHoe plugin;
     private final ConfigManager configManager;
     private final HoeManager hoeManager;
 
-    public BlockBreakListener(ConfigManager configManager, HoeManager hoeManager) {
+    public BlockBreakListener(JoJoHoe plugin, ConfigManager configManager, HoeManager hoeManager) {
+        this.plugin = plugin;
         this.configManager = configManager;
         this.hoeManager = hoeManager;
     }
@@ -29,6 +34,15 @@ public class BlockBreakListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         Block block = event.getBlock();
+
+        // WorldGuard check
+        WorldGuardManager wgManager = plugin.getWorldGuardManager();
+        if (wgManager != null && Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
+            if (!wgManager.canUseHoe(player, block.getLocation())) {
+                return; // Custom flag denies usage here
+            }
+        }
+
         ItemStack itemInHand = player.getInventory().getItemInMainHand();
 
         if (player.getGameMode() == GameMode.CREATIVE) {
@@ -67,7 +81,6 @@ public class BlockBreakListener implements Listener {
             HoeLevel currentLevel = configManager.getLevel(levelId);
             if (currentLevel == null) return;
 
-            // Don't show progress bar if max level is reached
             if (configManager.getNextLevel(levelId) == null) {
                 return;
             }
@@ -79,8 +92,11 @@ public class BlockBreakListener implements Listener {
                 "progress", String.valueOf(progress),
                 "required", String.valueOf(required)
             );
-            // We remove the prefix for action bar messages as it can be intrusive.
-            progressBarMessage = progressBarMessage.replace(configManager.getMessage("prefix"), "");
+
+            String prefix = configManager.getMessage("prefix");
+            if(progressBarMessage.contains(prefix)) {
+                progressBarMessage = progressBarMessage.substring(progressBarMessage.indexOf(prefix) + prefix.length());
+            }
 
             player.sendActionBar(MiniMessage.miniMessage().deserialize(progressBarMessage));
         }
