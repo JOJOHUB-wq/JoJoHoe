@@ -1,0 +1,7 @@
+ru/jojo/jojohoe/JoJoHoe.class
+ru/jojo/jojohoe/model/HoeLevel.class
+ru/jojo/jojohoe/manager/ConfigManager.class
+ru/jojo/jojohoe/command/HoeCommand.class
+ru/jojo/jojohoe/manager/HoeManager.class
+ru/jojo/jojohoe/listener/BlockBreakListener.class
+ru/jojo/jojohoe/command/HoeTabCompleter.class

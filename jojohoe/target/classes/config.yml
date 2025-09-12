@@ -1,0 +1,111 @@
+# Форматирование предмета
+format:
+  name: "&bОсобая мотыга &7({level_name})"
+  lore:
+    - "&7Уровень: &f{level_name}"
+    - "&7Прогресс: &a{progress}&7/&c{required}"
+    - ""
+  lore_max_level:
+    - "&7Уровень: &f{level_name}"
+    - "&a&lДостигнут максимальный уровень!"
+    - ""
+
+# Сообщения плагина
+messages:
+  prefix: "&8[&bJoJoHoe&8] "
+  no_permission: "&cУ вас нет прав для выполнения этой команды."
+  reload: "&aКонфигурация успешно перезагружена."
+  player_not_found: "&cИгрок не найден."
+  level_not_found: "&cУровень с ID ''{id}'' не найден."
+  hoe_given_self: "&aВы получили особую мотыгу."
+  hoe_given_other: "&aВы выдали особую мотыгу игроку &f{player}&a."
+  inventory_full: "&cИнвентарь цели полон, предмет будет брошен на землю."
+  cant_use: "&cВы не можете использовать эту мотыгу, так как у вас нет права jojohoe.use."
+  level_up: "&bПоздравляем! Вы достигли нового уровня: {level_name}"
+  usage: "&cИспользование: /hoe <reload|player|level> [level]"
+  progress_bar: "&aПрогресс: &e{progress}&7/&c{required}"
+
+# Настройки
+settings:
+  # Показывать сообщение о прогрессе в action bar?
+  show_progress_message: true
+  # Показывать сообщение, если у игрока нет права jojohoe.use?
+  notify_on_no_permission: true
+
+# Уровни мотыги
+levels:
+  - id: "wood"
+    name: "Деревянный"
+    material: "WOODEN_HOE"
+    required_crops: 100
+    # Бонус к удаче (для доп. дропа)
+    fortune_bonus: 1
+    enchants:
+      - "DURABILITY:1"
+    lore:
+      - "&7Простая, но надежная."
+  - id: "stone"
+    name: "Каменный"
+    material: "STONE_HOE"
+    required_crops: 250
+    fortune_bonus: 2
+    enchants:
+      - "DURABILITY:1"
+      - "EFFICIENCY:1"
+    lore:
+      - "&7Крепче и эффективнее."
+  - id: "iron"
+    name: "Железный"
+    material: "IRON_HOE"
+    required_crops: 500
+    fortune_bonus: 3
+    enchants:
+      - "DURABILITY:2"
+      - "EFFICIENCY:2"
+    lore:
+      - "&7Работать становится веселее."
+  - id: "gold"
+    name: "Золотой"
+    material: "GOLDEN_HOE"
+    required_crops: 1000
+    fortune_bonus: 5
+    enchants:
+      - "DURABILITY:3"
+      - "EFFICIENCY:3"
+      - "UNBREAKING:1"
+    lore:
+      - "&6Блеск и скорость."
+  - id: "diamond"
+    name: "Алмазный"
+    material: "DIAMOND_HOE"
+    required_crops: 2500
+    fortune_bonus: 7
+    enchants:
+      - "EFFICIENCY:4"
+      - "UNBREAKING:2"
+      - "FORTUNE:1"
+    lore:
+      - "&bЛучший друг фермера."
+  - id: "netherite"
+    name: "Незеритовый"
+    material: "NETHERITE_HOE"
+    required_crops: 5000
+    fortune_bonus: 10
+    enchants:
+      - "EFFICIENCY:5"
+      - "UNBREAKING:3"
+      - "FORTUNE:3"
+      - "MENDING:1"
+    lore:
+      - "&5Высшая форма мотыги."
+
+# Рецепт крафта (по умолчанию выключен)
+recipe:
+  enabled: false
+  shape:
+    - "DDD"
+    - " S "
+    - " S "
+  ingredients:
+    D: "DIAMOND_BLOCK"
+    S: "NETHERITE_INGOT"

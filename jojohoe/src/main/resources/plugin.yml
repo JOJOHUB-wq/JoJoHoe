@@ -1,0 +1,24 @@
+name: JoJoHoe
+version: 1.0.0
+main: ru.jojo.jojohoe.JoJoHoe
+api-version: '1.21'
+author: Jules
+description: A special hoe with leveling mechanics.
+commands:
+  hoe:
+    description: Main command for JoJoHoe plugin.
+    usage: /hoe <reload|player|level> [level]
+    aliases: [jojohoe]
+permissions:
+  jojohoe.use:
+    description: Allows leveling up the special hoe.
+    default: true
+  jojohoe.reload:
+    description: Allows reloading the plugin's configuration.
+    default: op
+  jojohoe.give.self:
+    description: Allows giving yourself a special hoe.
+    default: op
+  jojohoe.give.others:
+    description: Allows giving other players a special hoe.
+    default: op
