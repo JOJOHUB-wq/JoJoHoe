@@ -83,7 +83,6 @@ levels:
     enchants:
       - "EFFICIENCY:4"
       - "UNBREAKING:2"
-      - "FORTUNE:1"
     lore:
       - "&bЛучший друг фермера."
   - id: "netherite"
@@ -94,7 +93,6 @@ levels:
     enchants:
       - "EFFICIENCY:5"
       - "UNBREAKING:3"
-      - "FORTUNE:3"
       - "MENDING:1"
     lore:
       - "&5Высшая форма мотыги."
