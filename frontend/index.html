@@ -4,7 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Code Executor</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #code-editor {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+
+        #run-btn {
+            display: block;
+            width: 100px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #run-btn:hover {
+            background-color: #45a049;
+        }
+
+        .output-container {
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        #output {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,6 +88,60 @@
             <pre id="output"></pre>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        /**
+         * @fileoverview This script handles the frontend logic for the Python code executor.
+         * It sends the code from the editor to the backend for execution and displays the result.
+         */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            /**
+             * The text area element for code input.
+             * @type {HTMLTextAreaElement}
+             */
+            const codeEditor = document.getElementById('code-editor');
+
+            /**
+             * The button to trigger code execution.
+             * @type {HTMLButtonElement}
+             */
+            const runBtn = document.getElementById('run-btn');
+
+            /**
+             * The pre element to display the output of the executed code.
+             * @type {HTMLPreElement}
+             */
+            const outputArea = document.getElementById('output');
+
+            /**
+             * Handles the click event for the 'Run Code' button.
+             * Fetches the code from the editor, sends it to the backend,
+             * and displays the output or error.
+             */
+            runBtn.addEventListener('click', () => {
+                const code = codeEditor.value;
+                outputArea.textContent = 'Executing...';
+
+                fetch('/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code: code }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        outputArea.textContent = `Error: ${data.error}`;
+                    } else {
+                        outputArea.textContent = data.output;
+                    }
+                })
+                .catch(error => {
+                    outputArea.textContent = `An error occurred: ${error}`;
+                });
+            });
+        });
+    </script>
 </body>
 </html>

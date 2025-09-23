@@ -3,12 +3,10 @@ from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import os
 
-# The frontend directory is three levels up from this file
-# backend/app.py -> backend/ -> root/ -> frontend/
-FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'frontend')
+# The frontend directory is relative to the backend directory
+FRONTEND_DIR = os.path.join(os.path.dirname(__file__), '..', 'frontend')
 
-
-app = Flask(__name__, static_folder=FRONTEND_DIR, static_url_path='')
+app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
@@ -16,14 +14,7 @@ def serve_index():
     """
     Serves the main index.html file from the frontend directory.
     """
-    return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/<path:path>')
-def serve_static(path):
-    """
-    Serves static files (like CSS and JS) from the frontend directory.
-    """
-    return send_from_directory(app.static_folder, path)
+    return send_from_directory(FRONTEND_DIR, 'index.html')
 
 
 @app.route('/execute', methods=['POST'])

@@ -17,10 +17,8 @@ The repository is organized into two main directories:
 -   `backend/`: Contains the Flask application that handles code execution.
     -   `app.py`: The main Flask server file.
     -   `requirements.txt`: The Python dependencies for the backend.
--   `frontend/`: Contains the static files for the user interface.
-    -   `index.html`: The main HTML file.
-    -   `style.css`: The stylesheet for the application.
-    -   `script.js`: The JavaScript file that handles user interactions.
+-   `frontend/`: Contains the user interface file.
+    -   `index.html`: A single HTML file containing the structure, styling, and script for the frontend.
 
 ## Setup and Installation
 
