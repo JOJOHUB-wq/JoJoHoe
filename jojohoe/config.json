@@ -1,0 +1,25 @@
+{
+  "window": {
+    "width": 1280,
+    "height": 720,
+    "fullscreen": false,
+    "fov": 75
+  },
+  "controls": {
+    "mouse_sensitivity": 0.15,
+    "movement_speed": 6.0,
+    "jump_strength": 8.5,
+    "invert_y": false
+  },
+  "world": {
+    "chunk_size": 16,
+    "chunk_height": 128,
+    "render_distance": 4,
+    "seed": 1337
+  },
+  "graphics": {
+    "vsync": true,
+    "show_fps": true,
+    "gamma": 1.0
+  }
+}
